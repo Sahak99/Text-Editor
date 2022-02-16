@@ -178,20 +178,24 @@ void editorMoveCursor(int key)
     switch (key)
     {
     case ARROW_LEFT:
-        if(E.cx != 0)
+        if(E.cx != 0){
             E.cx--;
+        }
         break;
     case ARROW_RIGHT:
-        if(E.cx != E.screencols - 1)
+        if(E.cx != E.screencols - 1){
             E.cx++;
+        }
         break;
     case ARROW_UP:
-        if(E.cy != 0)
+        if(E.cy != 0){
             E.cy--;
+        }
         break;
     case ARROW_DOWN:
-            if(E.cy != E.screenrows - 1)
-        E.cy++;
+        if(E.cy != E.screenrows - 1){
+            E.cy++;
+        }
         break;
     }
 }
@@ -206,11 +210,12 @@ void editorProcessKeypress()
         write(STDOUT_FILENO, "\x1b[H",3);
         exit(0);
         break;
+
     case PAGE_UP:
     case PAGE_DOWN:
         {
             int times = E.screenrows;
-            while(times--)
+            while(--times)
             {
                 editorMoveCursor(c == PAGE_UP ? ARROW_UP : ARROW_DOWN);
             }
@@ -230,7 +235,6 @@ void editorProcessKeypress()
 void editorDrawRows(struct abuf *ab)
 {
     int y;
-    abAppend(ab, "\r\n", 2);
     for(y = 0; y < E.screenrows; ++y)
     {
         if(y == E.screenrows / 3)
