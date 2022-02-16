@@ -12,6 +12,12 @@
 #define CTRL_KEY(k) ((k) & (0x1f))
 #define KILO_VERSION "0.0.1"
 
+
+
+
+
+
+
 /* DATA */
 struct editorConfig{
     int cx;
@@ -22,12 +28,12 @@ struct editorConfig{
 };
 
 struct editorConfig E;
-
+// comment
 /* TERMINAL */
 void die(const char *s)
 {
-    write(STDOUT_FILENO, "\x1b[2J",4);
-    write(STDOUT_FILENO, "\x1b[H",3);
+    write(STDOUT_FILENO, "\x1b[2J", 4);
+    write(STDOUT_FILENO, "\x1b[H", 3);
 
     perror(s);
     exit(1);
@@ -63,7 +69,7 @@ char editorKeyRead()
     int nread;
     char c;
     while((nread = read(STDIN_FILENO, &c, 1)) != 1)
-        if(nread == -1 && errno != EAGAIN) die("read");
+        if(nread == -1 && errno != EAGAIN) die("Read");
     return c;
 }
 
